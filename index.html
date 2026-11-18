@@ -118,6 +118,89 @@ input{width:100%;padding:14px;background:#0d0a1e;border:1px solid #ffffff35;bord
 .collect{background:#ffffff0d;border:1px solid #ffffff20;border-radius:12px;padding:14px;color:white;text-align:left}
 footer{text-align:center;color:#9589ad;font-size:12px;padding:30px 5px}
 .toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:#fff0f7;color:#28142c;padding:12px 18px;border-radius:30px;font-weight:700;z-index:20;box-shadow:0 8px 30px #0008;max-width:90%;text-align:center}
+
+/* CINEMATIC INTRO + CITY MAP + MISSION FLOW */
+#introScreen{position:fixed;inset:0;z-index:100;background:radial-gradient(circle at 50% 38%,#7b285f 0,#28143f 42%,#080817 100%);display:flex;align-items:center;justify-content:center;text-align:center;padding:22px;overflow:hidden}
+#introScreen:before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent 0 34px,#ffffff08 35px 36px),linear-gradient(180deg,transparent 45%,#080817 100%)}
+.intro-inner{position:relative;z-index:2;width:min(850px,100%)}
+.intro-kicker{font:700 11px Orbitron;letter-spacing:5px;color:var(--cyan)}
+.intro-logo{font:900 clamp(38px,9vw,88px)/.98 Orbitron,sans-serif;letter-spacing:-3px;margin:20px 0;text-shadow:0 0 12px #ff4f9a,0 0 45px #ff4f9a;}
+.intro-logo span{color:#ffd19b;display:block;font-size:.48em;letter-spacing:4px;margin-top:15px}
+.intro-tag{font:900 clamp(21px,4vw,36px) Orbitron;color:#fff;margin:22px 0 8px;text-shadow:0 0 18px #ff4f9a}
+.loading-track{height:9px;background:#ffffff20;border-radius:20px;overflow:hidden;max-width:430px;margin:25px auto 10px}
+.loading-fill{height:100%;width:0;background:linear-gradient(90deg,var(--pink),var(--orange),var(--cyan));box-shadow:0 0 18px var(--pink);animation:loadup 3.1s ease forwards}
+@keyframes loadup{to{width:100%}}
+.intro-small{color:#d9c8e8;letter-spacing:2px;font:11px Orbitron}
+#mainContent{display:none}
+.profile-screen{margin:28px 0}
+.city-map{position:relative;min-height:570px;border:1px solid #ffffff30;border-radius:22px;overflow:hidden;background:linear-gradient(135deg,#143e4b,#192c43 42%,#3d2349);padding:22px;isolation:isolate}
+.city-map:before{content:"";position:absolute;inset:-15%;z-index:-1;background:repeating-linear-gradient(32deg,transparent 0 48px,#9ce8e833 49px 54px,transparent 55px 98px),repeating-linear-gradient(122deg,transparent 0 75px,#ffb66c22 76px 83px,transparent 84px 150px)}
+.map-water{position:absolute;inset:0;background:radial-gradient(ellipse at 80% 20%,#40e9ee20,transparent 40%),radial-gradient(ellipse at 15% 90%,#ff4f9a25,transparent 35%);z-index:-1}
+.map-title{font:900 clamp(22px,5vw,38px) Orbitron;text-shadow:0 3px 15px #000;margin:0 0 5px}
+.map-sub{color:#d4d4e8;font-size:13px}
+.map-road{position:absolute;height:18px;background:#111a2a;border:2px solid #8295a8;opacity:.8;border-radius:30px;transform:rotate(-22deg);width:125%;left:-10%;top:54%}
+.map-road.r2{transform:rotate(32deg);top:38%;left:-10%;width:120%;height:13px}
+.map-road.r3{transform:rotate(88deg);top:35%;left:44%;width:75%;height:12px}
+.map-pin{position:absolute;z-index:3;transform:translate(-50%,-50%);border:2px solid #fff;background:linear-gradient(135deg,#ff4f9a,#a84baf);color:white;border-radius:14px;padding:10px 12px;min-width:105px;box-shadow:0 6px 22px #0008;text-align:center;font:700 10px Orbitron}
+.map-pin small{display:block;font:600 10px Outfit;margin-top:4px}
+.map-pin.done{background:linear-gradient(135deg,#167d85,#2cb5a5)}
+.map-pin:disabled{opacity:.42;filter:grayscale(1)}
+.map-legend{position:absolute;bottom:15px;left:18px;background:#080817b8;padding:10px 13px;border-radius:10px;font-size:11px;color:#eee}
+#missionComplete{position:fixed;inset:0;z-index:90;background:#080817d9;display:flex;align-items:center;justify-content:center;padding:18px}
+.complete-card{width:min(470px,100%);text-align:center;background:linear-gradient(145deg,#30204d,#11152e);border:1px solid #ffffff40;border-radius:22px;padding:28px;box-shadow:0 20px 80px #000b}
+.complete-card h2{font:900 clamp(23px,5vw,34px) Orbitron;color:var(--cyan)}
+#partyScreen{position:fixed;inset:0;z-index:110;background:radial-gradient(circle at 50% 35%,#5c2b71,#1a1236 60%,#080817);display:flex;align-items:center;justify-content:center;text-align:center;padding:22px;overflow:hidden}
+.party-content{position:relative;z-index:2;max-width:760px}
+.party-headline{font:900 clamp(30px,7vw,66px)/1.1 Orbitron;color:#fff;text-shadow:0 0 20px #ff4f9a,0 0 45px #ff4f9a;margin:22px 0}
+.confetti{position:absolute;inset:0;pointer-events:none;background-image:radial-gradient(circle,#ff4f9a 2px,transparent 3px),radial-gradient(circle,#40e9ee 2px,transparent 3px),radial-gradient(circle,#ffcf70 2px,transparent 3px);background-size:83px 91px,117px 123px,69px 77px;animation:confettiFall 5s linear infinite;opacity:.8}
+@keyframes confettiFall{from{transform:translateY(-40px)}to{transform:translateY(100px)}}
+#eligibilityScreen{position:fixed;inset:0;z-index:105;background:radial-gradient(circle at 50% 25%,#49214f,#100b24 70%);display:flex;align-items:center;justify-content:center;padding:18px;overflow:auto}
+.eligibility-card{width:min(620px,100%);background:linear-gradient(145deg,#25183e,#100d25);border:1px solid #ffffff35;border-radius:22px;padding:clamp(20px,4vw,32px);box-shadow:0 20px 80px #0009}
+.eligibility-card h2{font:900 clamp(22px,5vw,34px) Orbitron;color:var(--pink)}
+.form-question{margin:18px 0;padding:14px;background:#ffffff09;border:1px solid #ffffff1b;border-radius:13px}
+.form-question label{display:block;font-weight:700;margin-bottom:9px}
+.form-question select{width:100%;padding:12px;border-radius:9px;background:#100b24;color:white;border:1px solid #ffffff40;font:inherit}
+.rage-line{min-height:20px;color:#ffb1d0;font-size:13px;font-weight:800;margin:8px 0 0}
+#reviewScreen{position:fixed;inset:0;z-index:120;background:radial-gradient(circle at 50% 35%,#57305f,#17102f 65%,#080817);display:flex;align-items:center;justify-content:center;text-align:center;padding:22px;overflow:auto}
+.review-card{width:min(650px,100%);background:#ffffff0d;border:1px solid #ffffff30;border-radius:22px;padding:28px}
+.review-card textarea{width:100%;min-height:100px;padding:13px;border-radius:10px;background:#0d0a1e;color:white;border:1px solid #ffffff35;font:inherit}
+.car-rage{position:absolute;left:50%;top:43%;transform:translate(-50%,-50%);z-index:5;background:#180d28eF;border:2px solid var(--pink);color:#fff;padding:14px 18px;border-radius:14px;font:900 clamp(17px,4vw,25px) Orbitron;text-align:center;box-shadow:0 0 30px #ff4f9a88;pointer-events:none;max-width:90%;animation:ragePop .22s ease-out}
+@keyframes ragePop{from{transform:translate(-50%,-50%) scale(.5)}to{transform:translate(-50%,-50%) scale(1)}}
+
+/* FINAL LOVE QUIZ + CARTOON PROP CUPBOARD */
+#loveQuizScreen,#toyCupboardScreen{position:fixed;inset:0;z-index:115;background:radial-gradient(circle at 50% 25%,#603064,#17102f 68%,#080817);display:flex;align-items:center;justify-content:center;text-align:center;padding:20px;overflow:auto}
+.love-card,.cupboard-card{width:min(680px,100%);background:#ffffff0d;border:1px solid #ffffff35;border-radius:24px;padding:clamp(20px,4vw,34px);box-shadow:0 20px 80px #0009}
+.love-card h1,.cupboard-card h1{font:900 clamp(27px,6vw,48px)/1.12 Orbitron;color:#fff;text-shadow:0 0 20px #ff4f9a;margin:14px 0}
+.love-options{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin:18px 0}
+.love-options button{min-width:125px}
+#loveNo1,#loveNo2{transition:transform .15s ease,opacity .15s ease}
+.cupboard-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:22px 0;padding:18px;background:linear-gradient(#553b65,#241833);border:8px solid #9b6e9f;border-radius:16px;box-shadow:inset 0 0 0 3px #d9b5d8,0 15px 35px #0008}
+.cupboard-item{background:#100b24;border:1px solid #ffffff30;border-radius:10px;padding:14px 5px;font-size:clamp(30px,7vw,54px)}
+.cupboard-item small{display:block;font:700 10px Outfit;color:#ffd4e9;margin-top:5px}
+@media(max-width:460px){.cupboard-grid{grid-template-columns:repeat(2,1fr)}}
+
+body.intro-lock{overflow:hidden}
+
+
+/* USER-SUPPLIED ARTWORK: explicit image layers prevent swapped/missing backgrounds */
+#introScreen{background:#674477;}
+#introScreen .intro-art{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center center;z-index:0;}
+#introScreen:before{background:linear-gradient(180deg,#35164008 0%,#35164000 45%,#351640a8 100%);z-index:1;pointer-events:none;}
+#introScreen .intro-inner{width:min(850px,100%);min-height:88vh;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;padding-bottom:clamp(24px,6vh,70px);z-index:2;}
+#introScreen .intro-tag{font:900 clamp(24px,5vw,42px) Orbitron;color:#fff;text-shadow:0 3px 18px #3c174f,0 0 24px #ff4f9a;margin:0 0 16px;}
+#introScreen .loading-track{width:min(430px,88%);background:#fff8;border:1px solid #fff9;}
+#introScreen .intro-small{color:#fff;text-shadow:0 2px 8px #28133a;}
+.profile-screen{position:relative;isolation:isolate;min-height:calc(100svh - 110px);margin:0 -18px;padding:22px clamp(16px,4vw,38px);display:flex;flex-direction:column;justify-content:space-between;background:#21152f;border-radius:0;overflow:hidden;}
+.profile-screen .profile-art{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 24%;z-index:-2;}
+.profile-screen:before{content:'';position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,#120a1c10 0%,#120a1c00 35%,#10091de8 100%);pointer-events:none;}
+.profile-topline,.profile-bottom{position:relative;z-index:1;}
+.profile-topline{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;text-shadow:0 2px 8px #000;}
+.profile-bottom{max-width:720px;margin:0 auto;width:100%;text-align:center;padding:20px;background:#130c20c9;border:1px solid #ffffff35;border-radius:20px;backdrop-filter:blur(7px);}
+.profile-bottom h1{font:900 clamp(27px,6vw,48px)/1.05 Orbitron;margin:10px 0;text-shadow:0 0 18px #ff4f9a;}
+.profile-bottom p{color:#fff;font-weight:600;}
+.profile-bottom .progress{margin:18px auto 8px;}
+.profile-bottom .primary{min-width:min(100%,280px);}
+#introScreen .intro-kicker,.profile-screen .hero{display:none!important;}
 @media(max-width:650px){
  #app{padding:12px}.hero{min-height:340px;padding:20px}.maze-wrap{grid-template-columns:1fr}
  .minimap{max-width:190px;margin:auto}.screen{padding:14px}
@@ -126,47 +209,67 @@ footer{text-align:center;color:#9589ad;font-size:12px;padding:30px 5px}
 </style>
 </head>
 <body>
+<div id="introScreen">
+ <img class="intro-art" src="Jason_Lucia_Lock_And_Load_With_Logos_portrait.jpg" alt="GTA VI inspired Jason and Lucia loading artwork">
+ <div class="intro-inner">
+  <div class="intro-tag">GHAREEBON KI GTA 6 😭</div>
+  <div class="loading-track"><div class="loading-fill"></div></div>
+  <div class="intro-small" id="loadingLabel">LOADING VICE CITY... PLEASE WAIT</div>
+  <button class="primary hidden" id="introContinue" style="margin-top:25px">START THE STORY →</button>
+ </div>
+</div>
 <div id="app">
- <header class="topbar">
+ <header class="topbar hidden" id="gameTopbar">
   <div class="brand">GRAND THEFT AUTO: <span>2 NMBR ADMI</span></div>
   <div style="display:flex;gap:8px;flex-wrap:wrap">
    <button class="pill" id="soundBtn">🔊 SOUND ON</button>
    <button class="pill" onclick="showCollection()">🏆 COLLECTION</button>
   </div>
  </header>
-
- <section class="hero" id="home">
-  <div class="sun"></div><div class="skyline"></div>
-  <div class="hero-content">
-   <div class="eyebrow">VICE CITY • SPECIAL EDITION • 2026</div>
-   <h1>2 NMBR<br>ADMIIII.</h1>
-   <p>One player. A city full of missions. A few secrets. And one very special delivery waiting at the end.</p>
-   <button class="primary" onclick="startGame()">ENTER VICE CITY →</button>
-  </div>
- </section>
-
- <div class="stats">
+ <div class="stats hidden" id="gameStats">
   <div class="stat"><b id="cash">0</b><small>💵 CASH</small></div>
   <div class="stat"><b id="xp">0</b><small>⚡ XP</small></div>
   <div class="stat"><b id="completed">0/8</b><small>MISSIONS</small></div>
  </div>
-
  <div id="mainContent">
-  <div class="section-title">YOUR MISSION LIST</div>
-  <div class="missions" id="missionGrid"></div>
-  <div class="screen">
-   <div class="screen-head"><h2>PLAYER PROFILE</h2><span class="eyebrow">PLAYER ONE</span></div>
-   <p><b>2 NMBR ADMI</b></p>
-   <p class="small">Vice City resident. Professional mission accepter. Occasional overthinker. Certified main character.</p>
-   <div class="progress"><div id="totalProgress"></div></div>
-   <p class="small" id="progressText">Your story starts here.</p>
+  <div class="screen profile-screen" id="profileScreen">
+   <img class="profile-art" src="Vice_City_Postcard_portrait.jpg" alt="Vice City postcard skyline profile artwork">
+   <div class="profile-topline"><span class="eyebrow">PLAYER PROFILE • 19 NOV 2026</span><span class="eyebrow">PLAYER ONE</span></div>
+   <div class="profile-bottom"><div class="eyebrow">VICE CITY • SPECIAL EDITION</div><h1>PLAYER: 2 NMBR ADMIIII.</h1>
+   <p>Vice City resident. Professional mission accepter. Occasional overthinker. Certified main character. 😎</p>
+   <div class="progress"><div id="totalProgress"></div></div><p class="small" id="progressText">Your story starts here.</p>
+   <button class="primary" onclick="enterCity()">ENTER VICE CITY →</button></div>
+  </div>
+  <div id="cityMapScreen" class="hidden">
+   <div class="city-map"><div class="map-water"></div><div class="map-road"></div><div class="map-road r2"></div><div class="map-road r3"></div>
+    <h2 class="map-title">VICE CITY MAP</h2><p class="map-sub">Choose your next destination, Player One.</p>
+    <div id="mapPins"></div><div class="map-legend">📍 Mission location &nbsp; ✓ Completed &nbsp; 🔒 Locked</div>
+   </div>
   </div>
  </div>
-
  <div id="gameScreen" class="screen hidden"></div>
  <div id="collectionScreen" class="screen hidden"></div>
- <footer>MADE WITH LOVE, DUAS & A LITTLE BIT OF DAANT ❤️<br>VICE CITY SPECIAL EDITION • NOT AN OFFICIAL GTA PRODUCT</footer>
+ <footer>VICE CITY SPECIAL EDITION • FAN-MADE EXPERIENCE • NOT AN OFFICIAL GTA PRODUCT</footer>
 </div>
+<div id="missionComplete" class="hidden"><div class="complete-card"><div class="eyebrow">MISSION ACCOMPLISHED</div><h2>LEVEL COMPLETE ✓</h2><p id="completeMessage">Well played, Player One.</p><div class="action-row" style="justify-content:center"><button class="primary" id="nextMissionBtn">NEXT STEP →</button><button class="secondary" id="exitMissionBtn">EXIT TO MAP</button></div></div></div>
+<div id="partyScreen" class="hidden"><div class="confetti"></div><div class="party-content"><div style="font-size:clamp(48px,10vw,90px)">🎉🎊🥳🎉</div><div class="eyebrow">VICE CITY LEGEND • GAME COMPLETE</div><h1 class="party-headline">YAYYYY! 1ST GTA6 PLAYED WELLLLL!!</h1><p style="font-size:clamp(18px,3vw,24px)">HEHEHUHU 😭🎉</p><p style="font-size:clamp(16px,2.8vw,21px)">Hm ghareeb to yhi kr skty bhaeee 😂 asli wali phir kbhi, abhi is sy kaam chlain!</p><h2 class="party-headline" style="font-size:clamp(26px,5vw,45px)">GTA6 HMARY STYLE MAIN 🎮💗</h2><button class="primary" onclick="showToast('REMINDER: REVIEWWIWII KARNA MAT BHOOOOLNA 😭💗')">DON'T FORGET TO REVIEWWIWII 💗</button><button class="secondary" onclick="backToCityFromParty()">BACK TO VICE CITY</button></div></div>
+<div id="loveQuizScreen" class="hidden"><div class="love-card">
+ <div class="eyebrow">BONUS ROUND • VERY IMPORTANT QUESTIONS</div>
+ <h1 id="loveQuestionTitle">DO YOU LOVE THIS GAME? 🥹</h1>
+ <p id="loveQuestionSub">Be honest. The game developers are emotionally invested. 😭</p>
+ <div id="loveAmountBlock" class="hidden"><p style="font-weight:800;color:#ffd4e9">HOW MUCHHHH?</p><div class="love-options"><button class="answer" onclick="chooseLoveAmount('A normal amount 😌')">A normal amount 😌</button><button class="answer" onclick="chooseLoveAmount('INFINITYYYYY ♾️')">INFINITYYYYY ♾️</button><button class="answer" onclick="chooseLoveAmount('MORE THAN YOU CAN IMAGINE 😭')">MORE THAN YOU CAN IMAGINE 😭</button></div></div>
+ <div class="love-options" id="loveYesNo"><button class="primary" id="loveYes1">YESSSS 💗</button><button class="secondary" id="loveNo1">NO 🙄</button></div>
+ <div id="loveSecondBlock" class="hidden"><h2 style="color:var(--pink);font-family:Orbitron">DO U LUV ME ALSO? 🥺</h2><p>Choose wisely. Your answer is being monitored. 👀</p><div class="love-options"><button class="primary" id="loveYes2">OBVIOUSLYYYYY 💗</button><button class="secondary" id="loveNo2">NO 😶</button></div></div>
+ <p class="rage-line" id="loveRageLine">There is only one correct attitude here. 😂</p>
+ </div></div>
+<div id="toyCupboardScreen" class="hidden"><div class="cupboard-card">
+ <div class="eyebrow">VICE CITY SECURITY DEPARTMENT</div><h1>ONE LAST THING. 👀</h1>
+ <p style="font-size:clamp(17px,3vw,22px);font-weight:800">Agar kisi bhi wajah se bhaagnay ka socha, pehle yeh cupboard dekh lena... BACH K REHNA! 😤</p>
+ <div class="cupboard-grid"><div class="cupboard-item">🔫<small>TOY BLASTER</small></div><div class="cupboard-item">💦<small>WATER GUN</small></div><div class="cupboard-item">🔫<small>FOAM DART</small></div><div class="cupboard-item">💦<small>SUPER SOAKER</small></div><div class="cupboard-item">🔫<small>NERF MODE</small></div><div class="cupboard-item">🎯<small>LAST WARNING</small></div></div>
+ <h2 style="font:900 clamp(19px,4vw,30px) Orbitron;color:#ff9fc8">THESE ARE REALLLLL. BACH K REHNA, MIND ITTT!! 😤💀</h2>
+ 
+ <button class="primary" onclick="finishCupboard()">OKAY OKAY, I'M STAYING 😂 →</button>
+ </div></div>
 <div id="toast" class="toast hidden"></div>
 
 <script>
@@ -193,16 +296,27 @@ const missions=[
  ["08","THE LAST DELIVERY","Find the envelope. Open your reward."]
 ];
 function renderMissions(){
- const grid=document.getElementById("missionGrid");
- grid.innerHTML="";
+ const pins=document.getElementById("mapPins");if(!pins)return;
+ pins.innerHTML="";
+ const spots=[[18,34],[43,26],[73,31],[83,58],[58,72],[29,67],[13,52],[49,48]];
  missions.forEach((m,i)=>{
-  const done=save.done.includes(i);
-  const b=document.createElement("button");b.className="mission"+(done?" done":"");
-  b.innerHTML=`<div class="num">MISSION ${m[0]} ${done?"✓":""}</div><h3>${m[1]}</h3><p>${m[2]}</p>`;
-  b.onclick=()=>openMission(i);grid.appendChild(b);
+  const done=save.done.includes(i),unlocked=i===0||save.done.includes(i-1);
+  const b=document.createElement("button");b.className="map-pin"+(done?" done":"");b.style.left=spots[i][0]+"%";b.style.top=spots[i][1]+"%";b.disabled=!unlocked;
+  b.innerHTML=`${unlocked?(done?"✓":"📍"):"🔒"} MISSION ${m[0]}<small>${m[1]}</small>`;
+  b.onclick=()=>openMission(i);pins.appendChild(b);
  });
 }
-function startGame(){document.getElementById("home").scrollIntoView({behavior:"smooth"});openMission(0)}
+function startGame(){
+ document.getElementById("introScreen").classList.add("hidden");
+ enterProfile();
+}
+function enterProfile(){
+ document.body.classList.remove("intro-lock");
+ document.getElementById("gameTopbar").classList.remove("hidden");document.getElementById("gameStats").classList.remove("hidden");
+ document.getElementById("mainContent").style.display="block";document.getElementById("profileScreen").classList.remove("hidden");document.getElementById("cityMapScreen").classList.add("hidden");updateHUD();
+}
+function enterCity(){clickSound();document.getElementById("profileScreen").classList.add("hidden");document.getElementById("cityMapScreen").classList.remove("hidden");renderMissions();document.getElementById("cityMapScreen").scrollIntoView({behavior:"smooth"});}
+function backToCityFromParty(){document.getElementById("partyScreen").classList.add("hidden");document.getElementById("mainContent").style.display="block";document.getElementById("profileScreen").classList.add("hidden");document.getElementById("cityMapScreen").classList.remove("hidden");renderMissions();}
 function showToast(msg){
  const t=document.getElementById("toast");t.textContent=msg;t.classList.remove("hidden");
  clearTimeout(showToast.timer);showToast.timer=setTimeout(()=>t.classList.add("hidden"),2200);
@@ -210,19 +324,25 @@ function showToast(msg){
 function award(i,cash=100,xp=50){
  if(!save.done.includes(i)){save.done.push(i);save.cash+=cash;save.xp+=xp;persist();showToast("MISSION COMPLETE! +$"+cash+" • +"+xp+" XP");}
  else showToast("MISSION REPLAYED! YOU'RE A PRO.");
+ if(i!==7){
+  const modal=document.getElementById("missionComplete");document.getElementById("completeMessage").textContent="MISSION "+String(i+1).padStart(2,"0")+" COMPLETE. Ready for the next destination?";
+  const next=document.getElementById("nextMissionBtn");next.textContent=i===6?"NEXT STEP →":"NEXT MISSION →";
+  next.onclick=()=>{modal.classList.add("hidden");if(i<7)openMission(i+1);else enterCity()};
+  document.getElementById("exitMissionBtn").onclick=()=>{modal.classList.add("hidden");goHome()};
+  modal.classList.remove("hidden");
+ }
 }
 function base(title,desc,body){
- document.getElementById("mainContent").classList.add("hidden");
+ document.getElementById("mainContent").style.display="none";
  document.getElementById("collectionScreen").classList.add("hidden");
  const s=document.getElementById("gameScreen");s.classList.remove("hidden");
  s.innerHTML=`<div class="screen-head"><span class="eyebrow">VICE CITY MISSION</span><button class="secondary" onclick="goHome()">✕ EXIT</button></div><h2>${title}</h2><p class="small">${desc}</p>${body}`;
  s.scrollIntoView({behavior:"smooth",block:"start"});return s;
 }
 function goHome(){
- stopCar();document.getElementById("gameScreen").classList.add("hidden");
- document.getElementById("collectionScreen").classList.add("hidden");
- document.getElementById("mainContent").classList.remove("hidden");
- document.getElementById("home").scrollIntoView({behavior:"smooth"});
+ stopCar();document.getElementById("missionComplete").classList.add("hidden");document.getElementById("gameScreen").classList.add("hidden");
+ document.getElementById("collectionScreen").classList.add("hidden");document.getElementById("mainContent").style.display="block";
+ document.getElementById("profileScreen").classList.add("hidden");document.getElementById("cityMapScreen").classList.remove("hidden");renderMissions();document.getElementById("cityMapScreen").scrollIntoView({behavior:"smooth"});
 }
 function openMission(i){
  clickSound();
@@ -269,16 +389,100 @@ document.getElementById("soundBtn").onclick=()=>{
  if(!soundOn){stopMusic();stopEngine()}else{startMusic();clickSound()}
 };
 document.addEventListener("pointerdown",()=>{if(soundOn){audio();startMusic()}},{once:true});
-
+setTimeout(()=>{document.getElementById("loadingLabel").textContent="VICE CITY IS READY.";document.getElementById("introContinue").classList.remove("hidden")},3200);
+document.getElementById("introContinue").onclick=()=>{clickSound();startGame()};
 /* ---------- MISSION 1 ---------- */
 function mission0(){
- const s=base("THE INVITATION","A new city. A new story. One player.",`
- <div class="challenge-box"><div class="eyebrow">INCOMING MESSAGE</div>
- <h2 style="color:var(--pink)">UNKNOWN NUMBER</h2>
- <p>"Welcome, 2 NMBR ADMI. Vice City has been waiting for you. Your missions begin now."</p>
- <p class="small">Your objective: prove that you're the main character.</p></div>
- <button class="primary" id="accept">ACCEPT THE INVITATION</button>`);
- s.querySelector("#accept").onclick=()=>{clickSound();award(0);mission1()};
+ // SCREEN 1: INVITATION INTRO ONLY
+ const intro=base("THE INVITATION","A new city. A new story. One player.",`
+  <div class="challenge-box" style="text-align:center;padding:26px">
+   <div class="eyebrow">INCOMING MESSAGE • UNKNOWN NUMBER</div>
+   <div style="font-size:64px;margin:12px">📩 🌴 🌆</div>
+   <h2 style="color:var(--pink)">YOU HAVE BEEN INVITED TO VICE CITY.</h2>
+   <p>"Welcome, 2 NMBR ADMI. Vice City has been waiting for you. Your missions begin now."</p>
+   <p>Your objective: prove that you're the main character. But first, there is one tiny formality before the gateway opens.</p>
+   <p class="small">Read the invitation carefully. The driving department is already suspicious. 👀</p>
+  </div>
+  <button class="primary" id="invitationNext">NEXT →</button>`);
+
+ // SCREEN 2: ELIGIBILITY FORM APPEARS ONLY AFTER NEXT
+ intro.querySelector("#invitationNext").onclick=()=>{
+  clickSound();
+  const s=base("DRIVER ELIGIBILITY CHECK","Pehle yeh batao janab, driving aati bhi hai? 👀",`
+   <div class="challenge-box"><div class="eyebrow">VICE CITY DRIVER LICENCE OFFICE</div>
+    <h2 style="color:var(--pink)">ARE YOU ELIGIBLE FOR THIS? 😭</h2>
+    <p>Before we hand over the keys, we need to check your qualifications, janab.</p>
+   </div>
+   <div class="eligibility-card" style="margin:18px auto">
+    <div class="form-question"><label for="driveAnswer">1. Do you know how to drive?</label>
+     <select id="driveAnswer"><option value="">Choose honestly...</option><option>Yes, obviously 😎</option><option>No, but confidence hai 😭</option><option>Only in my dreams 🥲</option></select>
+     <p class="rage-line" id="driveRage">Jawab do janab. Camera dekh raha hai. 👀</p>
+    </div>
+    <div class="form-question"><label for="crashAnswer">2. What will you do if you crash the car?</label>
+     <select id="crashAnswer"><option value="">Select your strategy...</option><option>Blame the road 😤</option><option>Blame the game 😭</option><option>try try again hi kr skdy 😂</option></select>
+     <p class="rage-line" id="crashRage">Insurance walay pehlay hi pareshan hain. 😂</p>
+    </div>
+    <div class="form-question"><label for="coinAnswer">3. Can you collect coins without crashing?</label>
+     <select id="coinAnswer"><option value="">Be honest...</option><option>100% yes 💪</option><option>InshaAllah 😭</option><option>let's see 😂</option></select>
+     <p class="rage-line" id="coinRage">Barray daaway. Dekhtay hain. 🤨</p>
+    </div>
+    <div class="form-question"><label for="rageAnswer">4. Are you emotionally prepared for rage bait?</label>
+     <select id="rageAnswer"><option value="">Choose...</option><option>Born ready 😎</option><option>No, but continue anyway 🥲</option></select>
+     <p class="rage-line" id="rageRage">Phir baad mein rona nahi. 💀</p>
+    </div>
+    <button class="primary" id="eligibilitySubmit" style="width:100%">SUBMIT MY ANSWERS →</button>
+    <p class="small" style="text-align:center">There are no correct answers. Sirf consequences. 😂</p>
+   </div>`);
+
+  // ROMAN URDU RAGE-BAIT RESPONSES — edit these lines freely
+  const rageReplies={
+   driveAnswer:{
+    "Yes, obviously 😎":"Ahaaaannn? Bari gal ay bae! 😭🏎️",
+    "No, but confidence hai 😭":"Phir kis khushi mein steering pakarni hai janab? 💀",
+    "Only in my dreams 🥲":"Koi gal nahi, khuwabon mein hi licence banwa lo. 😭"
+   },
+   crashAnswer:{
+    "Blame the road 😤":"Haan ji, ghalti bhi road ki hi hogi. 😂",
+    "Blame the game 😭":"Apni ghalti kabhi nahi manni. Wah bae wah! 💀",
+    "try try again 😂":"shawashy bhawain bndy mar jawan try try again dy kuj lgdy 😭"
+   },
+   coinAnswer:{
+    "100% yes 💪":"Achaaa? Itna confidence? Bari gal ay bae! 👀",
+    "InshaAllah 😭":"InshaAllah coins bhi mil jayen aur gaari bhi bach jaye. 😂",
+    "let's see 😂":"pkkaa marao kisy nuu 😭"
+   },
+   rageAnswer:{
+    "Born ready 😎":"Ohooo, janab te pehlay hi tayyar ne. Dekhtay hain! 🤨",
+    "No, but continue anyway 🥲":"Chalo phir himmat rakho, roast honay walay ho. 😂"
+   }
+  };
+  Object.entries(rageReplies).forEach(([id,answers])=>{
+   const el=s.querySelector("#"+id);
+   el.addEventListener("change",()=>{
+    s.querySelector("#"+id.replace("Answer","Rage")).textContent=answers[el.value]||"Jawab do janab. 👀";
+    clickSound();
+   });
+  });
+
+  // FORM SUBMISSION → GATEWAY ACCESS SCREEN
+  s.querySelector("#eligibilitySubmit").onclick=()=>{
+   const ids=["driveAnswer","crashAnswer","coinAnswer","rageAnswer"];
+   if(ids.some(id=>!s.querySelector("#"+id).value)){
+    showToast("SAARAY JAWAB DO JANAB! 😭");return;
+   }
+   clickSound();successSound();
+   const g=base("GATEWAY ACCESS GRANTED","Your answers have been reviewed by the most unserious driving authority in Vice City.",`
+    <div class="challenge-box" style="text-align:center;padding:28px">
+     <div style="font-size:64px">🪪 🚦 🌴</div>
+     <div class="eyebrow">DRIVER CHECK • PASSED(ISH)</div>
+     <h2 style="color:var(--pink)">WELCOME TO THE GATEWAY, JANAB! 😭</h2>
+     <p>Confidence approve ho gaya. Driving skills abhi investigation mein hain. 💀</p>
+     <p class="small">Gateway mission is ready. Press below when you're prepared for the consequences.</p>
+     <button class="primary" id="startGatewayMission" style="margin-top:12px">START GATEWAY MISSION →</button>
+    </div>`);
+   g.querySelector("#startGatewayMission").onclick=()=>{clickSound();award(0)};
+  };
+ };
 }
 function mission1(){
  const s=base("WELCOME TO VICE CITY","Your city. Your rules. Your next move.",`
@@ -286,18 +490,19 @@ function mission1(){
  <div style="font-size:65px">🌴 🌆 🚘</div>
  <h2>VICE CITY UNLOCKED</h2>
  <p>Neon nights, endless roads and missions waiting to be completed.</p>
- <p>Collect cash. Earn XP. Discover hidden secrets.</p></div>
+ <p>Collect cash. Earn XP. Discover hidden secrets.</p>
+ <p class="small">Your next destination is waiting. Keep your eyes on the road, Player One. 😎</p></div>
  <button class="primary" id="explore">LET'S EXPLORE</button>`);
- s.querySelector("#explore").onclick=()=>{clickSound();award(1);showToast("CITY DISCOVERED!");goHome()};
+ s.querySelector("#explore").onclick=()=>{clickSound();award(1);showToast("CITY DISCOVERED!")};
 }
 
 /* ---------- MISSION 3: CAR GAME ---------- */
-let carRAF=null,carRunning=false,carPos=0,carLane=1,carScore=0,carTime=35,carObstacles=[],carLast=0,carKeys={};
+let carRAF=null,carRunning=false,carPos=0,carLane=1,carScore=0,carTime=35,carObstacles=[],carLast=0,carKeys={},carRageTimer=null;
 function stopCar(){carRunning=false;if(carRAF)cancelAnimationFrame(carRAF);carRAF=null;stopEngine()}
 function mission2(){
  const s=base("THE GETAWAY","Drive through the city, dodge traffic and collect cash.",`
  <div class="stats"><div class="stat"><b id="carScore">0</b><small>CASH</small></div><div class="stat"><b id="carTime">35</b><small>SECONDS</small></div></div>
- <canvas id="carCanvas" width="600" height="720"></canvas>
+ <div style="position:relative"><canvas id="carCanvas" width="600" height="720"></canvas><div id="carRage" class="car-rage hidden"></div></div>
  <div class="car-controls"><button class="control-btn" id="carLeft">◀</button><button class="control-btn" id="carRight">▶</button></div>
  <p class="small" style="text-align:center">Use the on-screen buttons to steer. Avoid traffic and collect glowing cash.</p>
  <div class="action-row"><button class="primary" id="driveStart">START ENGINE</button><button class="secondary" onclick="stopCar()">PAUSE</button></div>`);
@@ -343,6 +548,7 @@ function mission2(){
   if(Math.random()<.65)carObstacles.push({lane:Math.floor(Math.random()*3),y:-60,cash:false});
   else carObstacles.push({lane:Math.floor(Math.random()*3),y:-30,cash:true});
  }
+ function showCarRage(message){const el=s.querySelector("#carRage");el.textContent=message;el.classList.remove("hidden");clearTimeout(carRageTimer);carRageTimer=setTimeout(()=>el.classList.add("hidden"),1350)}
  function frame(ts){
   if(!carRunning)return;
   if(!carLast)carLast=ts;let dt=Math.min((ts-carLast)/1000,.04);carLast=ts;
@@ -352,8 +558,8 @@ function mission2(){
   carObstacles=carObstacles.filter(o=>o.y<790);
   carObstacles.forEach(o=>{
    if(Math.abs(o.y-590)<42&&o.lane===carLane){
-    if(o.cash){o.y=900;carScore+=10;s.querySelector("#carScore").textContent=carScore;pickupSound()}
-    else{carRunning=false;stopEngine();showToast("CRASH! TRY AGAIN — YOU'VE GOT THIS.");}
+    if(o.cash){o.y=900;carScore+=10;s.querySelector("#carScore").textContent=carScore;pickupSound();showCarRage(["OYY DAIKH KYY COINNN! 🤑","WAH JANAB, DRIVER SAAB! 😭","BAE ARAM NAAL, FORMULA 1 NAHI HAI 😂"][Math.floor(Math.random()*3)])}
+    else{carRunning=false;stopEngine();showCarRage(["BHAI BRAKE KIDHR HAI?! 💀","OYY DAIKH KYY ROAD PE! 😭","BAE ARAM NAAL, DEEWAR NAHI BHAG RAHI 😂"][Math.floor(Math.random()*3)]);s.querySelector("#driveStart").textContent="TRY AGAIN — IF YOU DARE";showToast("CRASH! baee aram naal🫪☠️Coins bhi gaye, izzat bhi. tch tch tch 😭 Press TRY AGAIN.");}
    }
   });
   carTime-=dt;s.querySelector("#carTime").textContent=Math.max(0,Math.ceil(carTime));
@@ -366,7 +572,7 @@ function mission2(){
  s.querySelector("#carRight").onpointerdown=()=>steer(1);
  s.querySelector("#driveStart").onclick=()=>{
   clickSound();stopCar();carRunning=true;carLane=1;carScore=0;carTime=35;carObstacles=[];carLast=0;
-  s.querySelector("#carScore").textContent="0";s.querySelector("#carTime").textContent="35";startEngine();carRAF=requestAnimationFrame(frame);
+  s.querySelector("#carScore").textContent="0";s.querySelector("#carTime").textContent="35";s.querySelector("#carRage").classList.add("hidden");startEngine();carRAF=requestAnimationFrame(frame);
  };
  render();
 }
@@ -531,7 +737,7 @@ function revealEnvelope(s){
  s.querySelector("#openLetter").onclick=()=>openLetter();
 }
 function openLetter(){
- document.getElementById("mainContent").classList.add("hidden");
+ document.getElementById("mainContent").style.display="none";
  document.getElementById("collectionScreen").classList.add("hidden");
  document.getElementById("gameScreen").classList.remove("hidden");
  clickSound();successSound();
@@ -556,12 +762,24 @@ function openLetter(){
  <p>I am so proud of you. Keep going, Player One. Your next level is waiting.</p>
  <p class="sign">With lots of duas and a little bit of daant. ❤️</p>
  </div>
- <div class="action-row" style="justify-content:center"><button class="primary" onclick="showCollection()">VIEW YOUR SECRET COLLECTION</button><button class="secondary" onclick="goHome()">BACK TO CITY</button></div>`;
+ <div class="action-row" style="justify-content:center"><button class="primary" onclick="showPartyPage()">NEXT →</button><button class="secondary" onclick="showCollection()">VIEW YOUR SECRET COLLECTION</button></div>`;
 }
 
+function showPartyPage(){
+ clickSound();successSound();document.getElementById("gameScreen").classList.add("hidden");document.getElementById("collectionScreen").classList.add("hidden");
+ document.getElementById("loveQuizScreen").classList.remove("hidden");
+ const no1=document.getElementById("loveNo1"),no2=document.getElementById("loveNo2");
+ const dodge=(btn)=>{btn.style.position="relative";btn.style.transform=`translate(${Math.random()*180-90}px,${Math.random()*70-35}px)`;document.getElementById("loveRageLine").textContent="OHOHO NO OPTION IS RUNNING AWAY FROM YOU 😭😂";clickSound()};
+ no1.onclick=()=>{no1.classList.add("hidden");document.getElementById("loveRageLine").textContent="NO OPTION HAS LEFT THE CHAT. TRY AGAIN. 😭";showToast("Wrong answer detected. 😂")};
+ no2.onclick=()=>{no2.classList.add("hidden");document.getElementById("loveRageLine").textContent="HAHAHA NICE TRY. NO OPTION VANISHED. 😭💗";showToast("That option has been rejected by Vice City. 💀")};
+ document.getElementById("loveYes1").onclick=()=>{clickSound();document.getElementById("loveYesNo").classList.add("hidden");document.getElementById("loveAmountBlock").classList.remove("hidden");document.getElementById("loveRageLine").textContent="GOOD. NOW TELL US HOW MUCH. 👀"};
+ document.getElementById("loveYes2").onclick=()=>{clickSound();successSound();document.getElementById("loveQuizScreen").classList.add("hidden");document.getElementById("toyCupboardScreen").classList.remove("hidden")};
+}
+function chooseLoveAmount(answer){clickSound();document.getElementById("loveAmountBlock").classList.add("hidden");document.getElementById("loveSecondBlock").classList.remove("hidden");document.getElementById("loveRageLine").textContent="ANSWER ACCEPTED: "+answer+" 💗"}
+function finishCupboard(){clickSound();successSound();document.getElementById("toyCupboardScreen").classList.add("hidden");document.getElementById("partyScreen").classList.remove("hidden")}
 /* ---------- COLLECTION / REPLAY ---------- */
 function showCollection(){
- stopCar();document.getElementById("mainContent").classList.add("hidden");
+ stopCar();document.getElementById("mainContent").style.display="none";
  document.getElementById("gameScreen").classList.add("hidden");
  const c=document.getElementById("collectionScreen");c.classList.remove("hidden");
  c.innerHTML=`<div class="screen-head"><span class="eyebrow">YOUR VICE CITY MEMORIES</span><button class="secondary" onclick="goHome()">← BACK</button></div>
@@ -578,6 +796,7 @@ function showCollection(){
  c.scrollIntoView({behavior:"smooth"});
 }
 updateHUD();
+document.body.classList.add("intro-lock");
 </script>
 </body>
 </html>

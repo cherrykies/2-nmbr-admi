@@ -1,0 +1,583 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="theme-color" content="#100b24">
+<title>2 NMBR ADMI — Vice City Special Edition</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Outfit:wght@300;400;500;600;700;800&display=swap');
+
+:root{
+  --pink:#ff4f9a;--cyan:#40e9ee;--orange:#ffad65;
+  --purple:#a66bff;--dark:#100b24;--panel:#1b1536;
+  --white:#fff5fa;--muted:#b8aeca;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;background:var(--dark);color:var(--white);
+  font-family:Outfit,sans-serif;min-height:100vh;
+  background-image:radial-gradient(ellipse at 15% 15%,#46215c 0,transparent 42%),
+  radial-gradient(ellipse at 85% 80%,#102f4a 0,transparent 40%);
+}
+button{font:inherit;cursor:pointer}
+button:focus-visible{outline:3px solid var(--cyan);outline-offset:3px}
+.hidden{display:none!important}
+#app{max-width:1100px;margin:auto;padding:18px}
+.topbar{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.brand{font-family:Orbitron,sans-serif;font-size:clamp(14px,3vw,21px);font-weight:900;letter-spacing:1px}
+.brand span{color:var(--pink)}
+.pill{border:1px solid #ffffff30;background:#ffffff0c;border-radius:30px;padding:9px 13px;color:white}
+.hero{
+  min-height:390px;margin:24px 0;border:1px solid #ffffff25;border-radius:24px;
+  overflow:hidden;position:relative;display:flex;align-items:end;padding:30px;
+  background:
+  linear-gradient(0deg,#100b24 0%,#100b2480 45%,transparent 100%),
+  linear-gradient(120deg,#401c58,#e94d8b 48%,#f59b66 75%,#174e69);
+}
+.hero:before{content:"";position:absolute;inset:0;opacity:.3;
+background:repeating-linear-gradient(90deg,transparent 0 65px,#fff 66px 68px,transparent 69px 130px)}
+.sun{position:absolute;width:150px;height:150px;border-radius:50%;right:14%;top:13%;
+background:linear-gradient(#ffe2a4,#ff4f9a);box-shadow:0 0 70px #ff4f9a}
+.skyline{position:absolute;bottom:0;left:0;right:0;height:48%;
+background:linear-gradient(0deg,#100b24 0 10%,transparent 10%),
+repeating-linear-gradient(90deg,#19112d 0 28px,#2a1b40 29px 55px,#100b24 56px 67px);
+clip-path:polygon(0 35%,8% 35%,8% 10%,16% 10%,16% 44%,24% 44%,24% 0,33% 0,33% 40%,44% 40%,44% 17%,53% 17%,53% 45%,62% 45%,62% 8%,72% 8%,72% 39%,82% 39%,82% 0,91% 0,91% 30%,100% 30%,100% 100%,0 100%)}
+.hero-content{position:relative;z-index:2;max-width:650px}
+.eyebrow{font-family:Orbitron,sans-serif;color:var(--cyan);letter-spacing:3px;font-size:11px}
+h1{font-family:Orbitron,sans-serif;font-size:clamp(30px,7vw,65px);line-height:1.08;margin:12px 0;text-shadow:0 5px 30px #ff4f9a70}
+.hero p{color:#f6dfea;max-width:480px}
+.primary,.secondary,.danger{
+ border:0;border-radius:12px;padding:13px 18px;font-weight:800;letter-spacing:.4px;
+ transition:.18s transform,.18s filter
+}
+.primary{background:linear-gradient(110deg,var(--pink),#ff986c);color:#210d28;box-shadow:0 7px 25px #ff4f9a35}
+.secondary{background:#ffffff12;color:white;border:1px solid #ffffff35}
+.danger{background:#682747;color:white}
+.primary:hover,.secondary:hover,.danger:hover{transform:translateY(-2px);filter:brightness(1.12)}
+.stats{display:flex;gap:10px;flex-wrap:wrap;margin:18px 0}
+.stat{flex:1;min-width:105px;background:#ffffff0b;border:1px solid #ffffff20;border-radius:14px;padding:13px}
+.stat b{display:block;font-family:Orbitron,sans-serif;color:var(--cyan);font-size:20px}
+.stat small{color:var(--muted)}
+.section-title{font-family:Orbitron,sans-serif;font-size:18px;margin:28px 0 13px}
+.missions{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px}
+.mission{
+ background:linear-gradient(145deg,#241a43,#17122d);border:1px solid #ffffff20;
+ border-radius:16px;padding:17px;text-align:left;color:white;min-height:130px;
+ position:relative;overflow:hidden
+}
+.mission:after{content:"";position:absolute;width:90px;height:90px;border-radius:50%;background:#ff4f9a18;right:-25px;bottom:-40px}
+.mission:hover{border-color:var(--pink);transform:translateY(-2px)}
+.mission .num{font:700 11px Orbitron;color:var(--cyan)}
+.mission h3{margin:8px 0 4px;font-size:17px}
+.mission p{margin:0;color:var(--muted);font-size:13px}
+.mission.done{border-color:#40e9ee88}
+.screen{
+ background:linear-gradient(145deg,#241a43,#15102c);
+ border:1px solid #ffffff25;border-radius:20px;padding:20px;margin:20px 0
+}
+.screen-head{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.screen h2{font-family:Orbitron,sans-serif;font-size:clamp(19px,4vw,28px);margin:5px 0 15px}
+.small{font-size:13px;color:var(--muted)}
+.action-row{display:flex;gap:9px;flex-wrap:wrap;margin-top:16px}
+.progress{height:7px;border-radius:9px;background:#ffffff16;overflow:hidden;margin:12px 0}
+.progress>div{height:100%;background:linear-gradient(90deg,var(--pink),var(--cyan));width:0}
+.challenge-box{background:#100c23;border:1px solid #ffffff20;border-radius:14px;padding:18px;margin:14px 0}
+.answer{display:block;width:100%;text-align:left;background:#ffffff0d;color:white;border:1px solid #ffffff22;padding:13px;border-radius:10px;margin:8px 0}
+.answer:hover{border-color:var(--cyan)}
+input{width:100%;padding:14px;background:#0d0a1e;border:1px solid #ffffff35;border-radius:10px;color:white;font:inherit}
+#carCanvas{width:100%;display:block;background:#17232c;border-radius:14px;touch-action:none}
+.car-controls{display:flex;justify-content:center;gap:18px;margin-top:12px}
+.control-btn{width:75px;height:58px;border-radius:15px;background:#ffffff16;color:white;border:1px solid #ffffff45;font-size:26px;touch-action:manipulation}
+.maze-wrap{display:grid;grid-template-columns:minmax(0,1fr) 150px;gap:14px;align-items:start}
+#maze{display:grid;grid-template-columns:repeat(11,1fr);gap:3px;background:#090817;padding:8px;border-radius:12px;aspect-ratio:1/1}
+.cell{border-radius:3px;background:#292044;position:relative;display:grid;place-items:center;font-size:clamp(10px,2.4vw,20px)}
+.wall{background:linear-gradient(145deg,#534078,#261b48);box-shadow:inset 0 0 0 1px #ffffff10}
+.floor{background:#15132d}
+.player{background:#2a3152}
+.exit{background:#523a25;color:#ffd88b}
+.item{background:#243f4b;color:#65f5ff}
+.minimap{background:#0d0a20;border:1px solid #ffffff25;border-radius:12px;padding:10px}
+#mini{display:grid;grid-template-columns:repeat(11,1fr);gap:2px}
+.mini-cell{aspect-ratio:1;background:#382e50;border-radius:1px}
+.mini-cell.w{background:#7560a0}
+.mini-cell.p{background:var(--pink)}
+.mini-cell.e{background:var(--orange)}
+.pad{display:grid;grid-template-columns:repeat(3,58px);grid-template-rows:repeat(2,53px);gap:6px;justify-content:center;margin:16px auto}
+.pad button{background:linear-gradient(145deg,#ff4f9a,#a94caa);color:white;border:0;border-radius:13px;font-size:24px;box-shadow:0 4px 12px #0005;touch-action:manipulation}
+.pad button:active{transform:scale(.94)}
+.pad .up{grid-column:2}.pad .left{grid-column:1;grid-row:2}.pad .down{grid-column:2;grid-row:2}.pad .right{grid-column:3;grid-row:2}
+.envelope{width:150px;height:100px;margin:20px auto;background:linear-gradient(135deg,#ffcb8e,#ff7b9d);border-radius:9px;position:relative;box-shadow:0 0 35px #ff9c8b88;display:grid;place-items:center;color:#702448;font-size:35px;cursor:pointer;animation:float 2s infinite ease-in-out}
+@keyframes float{50%{transform:translateY(-7px)}}
+.letter{background:#fff3dc;color:#37253b;border-radius:8px;padding:clamp(20px,5vw,38px);font-family:Georgia,serif;line-height:1.75;box-shadow:0 10px 35px #0007;max-height:70vh;overflow:auto}
+.letter h2{text-align:center;color:#a82e65;font-size:clamp(20px,5vw,30px)}
+.letter strong{color:#a82e65}
+.letter .sign{text-align:center;font-style:italic;margin-top:20px}
+.collection{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px}
+.collect{background:#ffffff0d;border:1px solid #ffffff20;border-radius:12px;padding:14px;color:white;text-align:left}
+footer{text-align:center;color:#9589ad;font-size:12px;padding:30px 5px}
+.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:#fff0f7;color:#28142c;padding:12px 18px;border-radius:30px;font-weight:700;z-index:20;box-shadow:0 8px 30px #0008;max-width:90%;text-align:center}
+@media(max-width:650px){
+ #app{padding:12px}.hero{min-height:340px;padding:20px}.maze-wrap{grid-template-columns:1fr}
+ .minimap{max-width:190px;margin:auto}.screen{padding:14px}
+ .control-btn{width:68px;height:54px}
+}
+</style>
+</head>
+<body>
+<div id="app">
+ <header class="topbar">
+  <div class="brand">GRAND THEFT AUTO: <span>2 NMBR ADMI</span></div>
+  <div style="display:flex;gap:8px;flex-wrap:wrap">
+   <button class="pill" id="soundBtn">🔊 SOUND ON</button>
+   <button class="pill" onclick="showCollection()">🏆 COLLECTION</button>
+  </div>
+ </header>
+
+ <section class="hero" id="home">
+  <div class="sun"></div><div class="skyline"></div>
+  <div class="hero-content">
+   <div class="eyebrow">VICE CITY • SPECIAL EDITION • 2026</div>
+   <h1>2 NMBR<br>ADMIIII.</h1>
+   <p>One player. A city full of missions. A few secrets. And one very special delivery waiting at the end.</p>
+   <button class="primary" onclick="startGame()">ENTER VICE CITY →</button>
+  </div>
+ </section>
+
+ <div class="stats">
+  <div class="stat"><b id="cash">0</b><small>💵 CASH</small></div>
+  <div class="stat"><b id="xp">0</b><small>⚡ XP</small></div>
+  <div class="stat"><b id="completed">0/8</b><small>MISSIONS</small></div>
+ </div>
+
+ <div id="mainContent">
+  <div class="section-title">YOUR MISSION LIST</div>
+  <div class="missions" id="missionGrid"></div>
+  <div class="screen">
+   <div class="screen-head"><h2>PLAYER PROFILE</h2><span class="eyebrow">PLAYER ONE</span></div>
+   <p><b>2 NMBR ADMI</b></p>
+   <p class="small">Vice City resident. Professional mission accepter. Occasional overthinker. Certified main character.</p>
+   <div class="progress"><div id="totalProgress"></div></div>
+   <p class="small" id="progressText">Your story starts here.</p>
+  </div>
+ </div>
+
+ <div id="gameScreen" class="screen hidden"></div>
+ <div id="collectionScreen" class="screen hidden"></div>
+ <footer>MADE WITH LOVE, DUAS & A LITTLE BIT OF DAANT ❤️<br>VICE CITY SPECIAL EDITION • NOT AN OFFICIAL GTA PRODUCT</footer>
+</div>
+<div id="toast" class="toast hidden"></div>
+
+<script>
+/* ---------- SAVE DATA ---------- */
+const defaultData={cash:0,xp:0,done:[],items:[],sideAnswers:[]};
+let save={...defaultData,...JSON.parse(localStorage.getItem("viceCitySave")||"{}")};
+function persist(){localStorage.setItem("viceCitySave",JSON.stringify(save));updateHUD()}
+function updateHUD(){
+ document.getElementById("cash").textContent=save.cash;
+ document.getElementById("xp").textContent=save.xp;
+ document.getElementById("completed").textContent=save.done.length+"/8";
+ document.getElementById("totalProgress").style.width=(save.done.length/8*100)+"%";
+ document.getElementById("progressText").textContent=save.done.length===8?"VICE CITY LEGEND STATUS: UNLOCKED.":"Missions completed: "+save.done.length+" of 8";
+ renderMissions();
+}
+const missions=[
+ ["01","THE INVITATION","A mysterious message has arrived."],
+ ["02","WELCOME TO VICE CITY","Explore your new territory."],
+ ["03","THE GETAWAY","Drive like you own the city."],
+ ["04","THE MOST IMPORTANT DECISION","Choose wisely, Janab Saab."],
+ ["05","BRAIN ROT CHALLENGE","Your brain has entered the chat."],
+ ["06","THE WANTED MAN","Dodge trouble. Collect rewards."],
+ ["07","THE SIDE QUEST","Answer a few very important questions."],
+ ["08","THE LAST DELIVERY","Find the envelope. Open your reward."]
+];
+function renderMissions(){
+ const grid=document.getElementById("missionGrid");
+ grid.innerHTML="";
+ missions.forEach((m,i)=>{
+  const done=save.done.includes(i);
+  const b=document.createElement("button");b.className="mission"+(done?" done":"");
+  b.innerHTML=`<div class="num">MISSION ${m[0]} ${done?"✓":""}</div><h3>${m[1]}</h3><p>${m[2]}</p>`;
+  b.onclick=()=>openMission(i);grid.appendChild(b);
+ });
+}
+function startGame(){document.getElementById("home").scrollIntoView({behavior:"smooth"});openMission(0)}
+function showToast(msg){
+ const t=document.getElementById("toast");t.textContent=msg;t.classList.remove("hidden");
+ clearTimeout(showToast.timer);showToast.timer=setTimeout(()=>t.classList.add("hidden"),2200);
+}
+function award(i,cash=100,xp=50){
+ if(!save.done.includes(i)){save.done.push(i);save.cash+=cash;save.xp+=xp;persist();showToast("MISSION COMPLETE! +$"+cash+" • +"+xp+" XP");}
+ else showToast("MISSION REPLAYED! YOU'RE A PRO.");
+}
+function base(title,desc,body){
+ document.getElementById("mainContent").classList.add("hidden");
+ document.getElementById("collectionScreen").classList.add("hidden");
+ const s=document.getElementById("gameScreen");s.classList.remove("hidden");
+ s.innerHTML=`<div class="screen-head"><span class="eyebrow">VICE CITY MISSION</span><button class="secondary" onclick="goHome()">✕ EXIT</button></div><h2>${title}</h2><p class="small">${desc}</p>${body}`;
+ s.scrollIntoView({behavior:"smooth",block:"start"});return s;
+}
+function goHome(){
+ stopCar();document.getElementById("gameScreen").classList.add("hidden");
+ document.getElementById("collectionScreen").classList.add("hidden");
+ document.getElementById("mainContent").classList.remove("hidden");
+ document.getElementById("home").scrollIntoView({behavior:"smooth"});
+}
+function openMission(i){
+ clickSound();
+ if(i===0)mission0();if(i===1)mission1();if(i===2)mission2();
+ if(i===3)mission3();if(i===4)mission4();if(i===5)mission5();
+ if(i===6)mission6();if(i===7)mission7();
+}
+
+/* ---------- SOUND ENGINE: GENERATED IN BROWSER ---------- */
+let audioCtx=null,soundOn=true,musicTimer=null,engineOsc=null,engineGain=null;
+function audio(){
+ if(!audioCtx)audioCtx=new (window.AudioContext||window.webkitAudioContext)();
+ if(audioCtx.state==="suspended")audioCtx.resume();
+ return audioCtx;
+}
+function tone(freq=440,duration=.09,type="sine",volume=.06){
+ if(!soundOn)return;
+ try{const a=audio(),o=a.createOscillator(),g=a.createGain();
+ o.type=type;o.frequency.value=freq;g.gain.setValueAtTime(volume,a.currentTime);
+ g.gain.exponentialRampToValueAtTime(.001,a.currentTime+duration);
+ o.connect(g);g.connect(a.destination);o.start();o.stop(a.currentTime+duration);
+ }catch(e){}
+}
+function clickSound(){tone(720,.055,"square",.035);tone(980,.04,"sine",.02)}
+function successSound(){[523,659,784,1046].forEach((f,i)=>setTimeout(()=>tone(f,.2,"triangle",.07),i*100))}
+function pickupSound(){tone(880,.08,"sine");setTimeout(()=>tone(1175,.15,"sine"),80)}
+function startMusic(){
+ if(!soundOn||musicTimer)return;
+ const notes=[220,261,329,392,329,261,196,246];let n=0;
+ musicTimer=setInterval(()=>{if(soundOn)tone(notes[n++%notes.length],.25,"triangle",.018)},360);
+}
+function stopMusic(){clearInterval(musicTimer);musicTimer=null}
+function startEngine(){
+ if(!soundOn)return;
+ try{const a=audio();if(engineOsc)return;
+ engineOsc=a.createOscillator();engineGain=a.createGain();
+ engineOsc.type="sawtooth";engineOsc.frequency.value=65;engineGain.gain.value=.018;
+ engineOsc.connect(engineGain);engineGain.connect(a.destination);engineOsc.start();
+ }catch(e){}
+}
+function stopEngine(){try{if(engineOsc){engineOsc.stop();engineOsc=null;engineGain=null}}catch(e){}}
+document.getElementById("soundBtn").onclick=()=>{
+ soundOn=!soundOn;document.getElementById("soundBtn").textContent=soundOn?"🔊 SOUND ON":"🔇 SOUND OFF";
+ if(!soundOn){stopMusic();stopEngine()}else{startMusic();clickSound()}
+};
+document.addEventListener("pointerdown",()=>{if(soundOn){audio();startMusic()}},{once:true});
+
+/* ---------- MISSION 1 ---------- */
+function mission0(){
+ const s=base("THE INVITATION","A new city. A new story. One player.",`
+ <div class="challenge-box"><div class="eyebrow">INCOMING MESSAGE</div>
+ <h2 style="color:var(--pink)">UNKNOWN NUMBER</h2>
+ <p>"Welcome, 2 NMBR ADMI. Vice City has been waiting for you. Your missions begin now."</p>
+ <p class="small">Your objective: prove that you're the main character.</p></div>
+ <button class="primary" id="accept">ACCEPT THE INVITATION</button>`);
+ s.querySelector("#accept").onclick=()=>{clickSound();award(0);mission1()};
+}
+function mission1(){
+ const s=base("WELCOME TO VICE CITY","Your city. Your rules. Your next move.",`
+ <div class="challenge-box" style="text-align:center">
+ <div style="font-size:65px">🌴 🌆 🚘</div>
+ <h2>VICE CITY UNLOCKED</h2>
+ <p>Neon nights, endless roads and missions waiting to be completed.</p>
+ <p>Collect cash. Earn XP. Discover hidden secrets.</p></div>
+ <button class="primary" id="explore">LET'S EXPLORE</button>`);
+ s.querySelector("#explore").onclick=()=>{clickSound();award(1);showToast("CITY DISCOVERED!");goHome()};
+}
+
+/* ---------- MISSION 3: CAR GAME ---------- */
+let carRAF=null,carRunning=false,carPos=0,carLane=1,carScore=0,carTime=35,carObstacles=[],carLast=0,carKeys={};
+function stopCar(){carRunning=false;if(carRAF)cancelAnimationFrame(carRAF);carRAF=null;stopEngine()}
+function mission2(){
+ const s=base("THE GETAWAY","Drive through the city, dodge traffic and collect cash.",`
+ <div class="stats"><div class="stat"><b id="carScore">0</b><small>CASH</small></div><div class="stat"><b id="carTime">35</b><small>SECONDS</small></div></div>
+ <canvas id="carCanvas" width="600" height="720"></canvas>
+ <div class="car-controls"><button class="control-btn" id="carLeft">◀</button><button class="control-btn" id="carRight">▶</button></div>
+ <p class="small" style="text-align:center">Use the on-screen buttons to steer. Avoid traffic and collect glowing cash.</p>
+ <div class="action-row"><button class="primary" id="driveStart">START ENGINE</button><button class="secondary" onclick="stopCar()">PAUSE</button></div>`);
+ const canvas=s.querySelector("#carCanvas"),ctx=canvas.getContext("2d");
+ const W=600,H=720;
+ function drawCar(x,y,color,player=false){
+  ctx.save();ctx.translate(x,y);
+  // soft shadow
+  ctx.fillStyle="#0008";ctx.beginPath();ctx.ellipse(0,12,34,57,0,0,Math.PI*2);ctx.fill();
+  // wheels
+  ctx.fillStyle="#080910";ctx.fillRect(-35,-38,10,32);ctx.fillRect(25,-38,10,32);
+  ctx.fillRect(-35,20,10,32);ctx.fillRect(25,20,10,32);
+  // body
+  let grad=ctx.createLinearGradient(-30,0,30,0);grad.addColorStop(0,"#333");grad.addColorStop(.22,color);grad.addColorStop(.7,color);grad.addColorStop(1,"#333");
+  ctx.fillStyle=grad;ctx.beginPath();ctx.moveTo(-25,-53);ctx.quadraticCurveTo(-31,-42,-30,-15);ctx.lineTo(-30,36);ctx.quadraticCurveTo(-27,53,-17,55);ctx.lineTo(17,55);ctx.quadraticCurveTo(29,51,30,35);ctx.lineTo(30,-15);ctx.quadraticCurveTo(31,-43,25,-53);ctx.closePath();ctx.fill();
+  // windshield
+  ctx.fillStyle="#9ce9f0";ctx.globalAlpha=.8;ctx.beginPath();ctx.moveTo(-21,-27);ctx.lineTo(21,-27);ctx.lineTo(18,-4);ctx.lineTo(-18,-4);ctx.closePath();ctx.fill();
+  ctx.globalAlpha=1;ctx.fillStyle="#142536";ctx.fillRect(-18,8,36,25);
+  ctx.fillStyle="#fff4be";ctx.shadowColor="#fff4be";ctx.shadowBlur=18;ctx.fillRect(-23,-53,12,5);ctx.fillRect(11,-53,12,5);
+  ctx.shadowBlur=0;ctx.fillStyle="#ff334f";ctx.fillRect(-23,48,12,5);ctx.fillRect(11,48,12,5);
+  if(player){ctx.strokeStyle="#fff";ctx.lineWidth=2;ctx.strokeRect(-30,-56,60,112)}
+  ctx.restore();
+ }
+ function render(){
+  ctx.clearRect(0,0,W,H);
+  ctx.fillStyle="#153d35";ctx.fillRect(0,0,W,H);
+  // city sides
+  for(let y=-50;y<H;y+=145){
+   ctx.fillStyle="#1e2944";ctx.fillRect(0,y,115,100);ctx.fillRect(485,y+35,115,100);
+   ctx.fillStyle="#ffb66c";for(let j=0;j<4;j++){ctx.fillRect(15+j*24,y+15,9,15);ctx.fillRect(500+j*22,y+52,9,15)}
+  }
+  ctx.fillStyle="#333541";ctx.fillRect(115,0,370,H);
+  ctx.fillStyle="#d5c58b";for(let y=-50;y<H;y+=95){ctx.fillRect(296,y+carPos%95,8,48)}
+  ctx.fillStyle="#85818c";ctx.fillRect(115,0,5,H);ctx.fillRect(480,0,5,H);
+  // traffic
+  carObstacles.forEach(o=>{drawCar(176+o.lane*124,o.y,"#55c8d7",false)});
+  // cash
+  carObstacles.filter(o=>o.cash).forEach(o=>{ctx.fillStyle="#ffd65c";ctx.shadowColor="#ffd65c";ctx.shadowBlur=18;ctx.beginPath();ctx.arc(176+o.lane*124,o.y,13,0,Math.PI*2);ctx.fill();ctx.shadowBlur=0;ctx.fillStyle="#593d12";ctx.font="bold 13px Arial";ctx.fillText("$",171+o.lane*124,o.y+5)});
+  drawCar(176+carLane*124,590,"#ff4f9a",true);
+  ctx.fillStyle="#ffffff";ctx.font="bold 14px Orbitron";ctx.fillText("VICE CITY EXPRESSWAY",15,25);
+ }
+ function spawn(){
+  if(Math.random()<.65)carObstacles.push({lane:Math.floor(Math.random()*3),y:-60,cash:false});
+  else carObstacles.push({lane:Math.floor(Math.random()*3),y:-30,cash:true});
+ }
+ function frame(ts){
+  if(!carRunning)return;
+  if(!carLast)carLast=ts;let dt=Math.min((ts-carLast)/1000,.04);carLast=ts;
+  carPos+=dt*260;
+  carObstacles.forEach(o=>o.y+=dt*280);
+  if(Math.random()<dt*.8)spawn();
+  carObstacles=carObstacles.filter(o=>o.y<790);
+  carObstacles.forEach(o=>{
+   if(Math.abs(o.y-590)<42&&o.lane===carLane){
+    if(o.cash){o.y=900;carScore+=10;s.querySelector("#carScore").textContent=carScore;pickupSound()}
+    else{carRunning=false;stopEngine();showToast("CRASH! TRY AGAIN — YOU'VE GOT THIS.");}
+   }
+  });
+  carTime-=dt;s.querySelector("#carTime").textContent=Math.max(0,Math.ceil(carTime));
+  render();
+  if(carTime<=0){carRunning=false;stopEngine();save.cash+=carScore;persist();award(2,100+carScore,70);s.querySelector("#driveStart").textContent="PLAY AGAIN";showToast("GETAWAY COMPLETE!")}
+  if(carRunning)carRAF=requestAnimationFrame(frame);
+ }
+ function steer(dir){if(!carRunning)return;carLane=Math.max(0,Math.min(2,carLane+dir));clickSound()}
+ s.querySelector("#carLeft").onpointerdown=()=>steer(-1);
+ s.querySelector("#carRight").onpointerdown=()=>steer(1);
+ s.querySelector("#driveStart").onclick=()=>{
+  clickSound();stopCar();carRunning=true;carLane=1;carScore=0;carTime=35;carObstacles=[];carLast=0;
+  s.querySelector("#carScore").textContent="0";s.querySelector("#carTime").textContent="35";startEngine();carRAF=requestAnimationFrame(frame);
+ };
+ render();
+}
+
+/* ---------- MISSION 4: CHOICES ---------- */
+function mission3(){
+ const s=base("THE MOST IMPORTANT DECISION","Pick the answer that sounds most like you.",`
+ <div class="challenge-box"><h3>When life gets difficult, what do you do?</h3>
+ <button class="answer" data-a="a">A. Give up immediately.</button>
+ <button class="answer" data-a="b">B. Take a breath, learn and try again.</button>
+ <button class="answer" data-a="c">C. Blame the traffic.</button>
+ <p id="decisionResult" class="small"></p></div>`);
+ s.querySelectorAll(".answer").forEach(b=>b.onclick=()=>{
+  clickSound();s.querySelector("#decisionResult").textContent=b.dataset.a==="b"?"CORRECT. THAT'S THE MAIN CHARACTER ENERGY.":"Interesting choice, Janab Saab. But we both know you can keep going.";
+  award(3,80,40);s.querySelectorAll(".answer").forEach(x=>x.disabled=true);
+ });
+}
+
+/* ---------- MISSION 5: BRAIN ROT CODE ---------- */
+function mission4(){
+ const s=base("BRAIN ROT CHALLENGE","Three tiny tests. One very important code.",`
+ <div class="challenge-box"><h3>TEST 1 — PICK THE ODD ONE OUT</h3>
+ <div class="action-row" id="odd">${["🚗","🚕","🍕","🚙"].map(x=>`<button class="answer" style="font-size:28px;text-align:center">${x}</button>`).join("")}</div>
+ <p id="oddResult" class="small"></p></div>
+ <div class="challenge-box"><h3>TEST 2 — REACTION CHECK</h3>
+ <p>Tap the button when it turns green.</p><button class="primary" id="react">WAIT...</button><p id="reactionResult" class="small"></p></div>
+ <div class="challenge-box"><h3>TEST 3 — ENTER THE SECRET CODE</h3>
+ <p class="small">You know this one. Don't overthink it.</p>
+ <input id="secretCode" inputmode="numeric" maxlength="6" placeholder="Enter 6-digit code">
+ <button class="primary" id="codeSubmit" style="margin-top:10px">UNLOCK</button><p id="codeResult" class="small"></p></div>`);
+ let passed=[false,false,false];
+ s.querySelectorAll("#odd button").forEach(b=>b.onclick=()=>{
+  clickSound();if(b.textContent==="🍕"){passed[0]=true;s.querySelector("#oddResult").textContent="Correct. Pizza has entered the wrong group.";successSound()}
+  else s.querySelector("#oddResult").textContent="Nope. Try again.";
+  finish();
+ });
+ let armed=false;
+ setTimeout(()=>{if(s.isConnected){armed=true;s.querySelector("#react").textContent="🟢 TAP NOW";s.querySelector("#react").style.background="#24a66b"}},2200);
+ s.querySelector("#react").onclick=()=>{
+  clickSound();if(armed){passed[1]=true;s.querySelector("#reactionResult").textContent="REFLEXES: APPROVED.";finish()}
+  else s.querySelector("#reactionResult").textContent="Too early! Wait for green.";
+ };
+ s.querySelector("#codeSubmit").onclick=()=>{
+  clickSound();if(s.querySelector("#secretCode").value==="982007"){passed[2]=true;s.querySelector("#codeResult").textContent="SECRET CODE ACCEPTED. LEGEND.";successSound()}
+  else s.querySelector("#codeResult").textContent="Wrong code. Try again, Janab Saab.";
+  finish();
+ };
+ function finish(){if(passed.every(Boolean)){award(4,150,100);s.querySelector("#codeResult").textContent="ALL TESTS COMPLETE. BRAIN ROT MASTER UNLOCKED."}}
+}
+
+/* ---------- MISSION 6: DODGE GAME ---------- */
+function mission5(){
+ const s=base("THE WANTED MAN","Quick! Dodge the incoming trouble.",`
+ <div class="challenge-box" style="text-align:center">
+ <div id="dodgeFace" style="font-size:75px">🏃🏻‍♂️</div>
+ <h3 id="dodgeText">Tap the safe direction!</h3>
+ <div class="action-row" style="justify-content:center">
+ <button class="primary" id="dodgeLeft">⬅ LEFT</button><button class="primary" id="dodgeRight">RIGHT ➡</button>
+ </div><p id="dodgeScore">Dodges: 0 / 5</p></div>`);
+ let score=0,correct=0;
+ function next(){
+  correct=Math.random()<.5?0:1;s.querySelector("#dodgeText").textContent=correct===0?"🚧 OBSTACLE ON RIGHT — GO LEFT!":"🚧 OBSTACLE ON LEFT — GO RIGHT!";
+ }
+ function choose(n){
+  clickSound();if(n===correct){score++;s.querySelector("#dodgeFace").textContent="🏃🏻‍♂️💨";s.querySelector("#dodgeScore").textContent="Dodges: "+score+" / 5";if(score>=5){award(5,120,65);s.querySelector("#dodgeText").textContent="YOU ESCAPED!";s.querySelectorAll("#dodgeLeft,#dodgeRight").forEach(b=>b.disabled=true)}else next()}
+  else{s.querySelector("#dodgeFace").textContent="💥";s.querySelector("#dodgeText").textContent="OOPS! Try that again.";score=0;s.querySelector("#dodgeScore").textContent="Dodges: 0 / 5";next()}
+ }
+ s.querySelector("#dodgeLeft").onclick=()=>choose(0);s.querySelector("#dodgeRight").onclick=()=>choose(1);next();
+}
+
+/* ---------- MISSION 7: SIDE QUEST ---------- */
+function mission6(){
+ const questions=["What is one thing you want to achieve this year?","What is your dream car?","What is one thing that instantly makes your day better?"];
+ const s=base("THE SIDE QUEST","A few questions from your favourite mission controller.",`
+ <div class="challenge-box">${questions.map((q,i)=>`<label style="display:block;margin:14px 0">${q}<input class="sideAnswer" placeholder="Your answer..." value="${(save.sideAnswers[i]||"").replaceAll('"',"&quot;")}"></label>`).join("")}
+ <button class="primary" id="saveAnswers">SAVE MY ANSWERS</button></div>`);
+ s.querySelector("#saveAnswers").onclick=()=>{
+  clickSound();save.sideAnswers=[...s.querySelectorAll(".sideAnswer")].map(x=>x.value);persist();award(6,100,60);showToast("SIDE QUEST SAVED!");
+ };
+}
+
+/* ---------- MISSION 8: FINAL MAZE ---------- */
+const mazeMap=[
+ "###########",
+ "#...#.....#",
+ "#.#.#.###.#",
+ "#.#...#...#",
+ "#.###.#.#.#",
+ "#.....#.#.#",
+ "###.###.#.#",
+ "#...#...#.#",
+ "#.#.#.###.#",
+ "#.........#",
+ "###########"
+];
+let player={x:1,y:1},mazeItems=[{x:3,y:1,id:"🌟",name:"A little reminder"},{x:9,y:3,id:"💎",name:"Bonus diamond"},{x:1,y:7,id:"🪙",name:"Lucky coin"}],envelope={x:9,y:9};
+function mission7(){
+ player={x:1,y:1};
+ const s=base("THE LAST DELIVERY","A special delivery is waiting somewhere in this maze. Find it.",`
+ <div class="challenge-box"><div class="eyebrow">SPECIAL DELIVERY</div><h3>ONE ENVELOPE. ONE DESTINATION.</h3>
+ <p class="small">Explore the maze, collect the hidden items and find the envelope. Tap the arrow controls to move.</p></div>
+ <div class="maze-wrap"><div id="maze"></div><div class="minimap"><b>MINI MAP</b><p class="small">Pink = you<br>Gold = envelope</p><div id="mini"></div><p class="small" id="mazeStatus">Find the envelope!</p></div></div>
+ <div class="pad">
+ <button class="up" id="up">↑</button><button class="left" id="left">←</button>
+ <button class="down" id="down">↓</button><button class="right" id="right">→</button>
+ </div>
+ <div class="action-row" style="justify-content:center"><button class="secondary" id="mazeReset">RESTART MAZE</button></div>
+ <div id="envelopeArea"></div>`);
+ drawMaze(s);
+ function move(dx,dy){
+  clickSound();const nx=player.x+dx,ny=player.y+dy;
+  if(mazeMap[ny]?.[nx]==="#"){tone(120,.05,"square",.02);return}
+  player={x:nx,y:ny};
+  const item=mazeItems.find(it=>it.x===nx&&it.y===ny);
+  if(item&&!save.items.includes(item.id)){
+   save.items.push(item.id);save.cash+=25;save.xp+=10;persist();pickupSound();showToast("SECRET FOUND: "+item.name);
+  }
+  drawMaze(s);
+  if(nx===envelope.x&&ny===envelope.y)revealEnvelope(s);
+ }
+ s.querySelector("#up").onclick=()=>move(0,-1);
+ s.querySelector("#down").onclick=()=>move(0,1);
+ s.querySelector("#left").onclick=()=>move(-1,0);
+ s.querySelector("#right").onclick=()=>move(1,0);
+ s.querySelector("#mazeReset").onclick=()=>{player={x:1,y:1};drawMaze(s);clickSound()};
+ // allow swipe gestures on the maze itself
+ let touchStart=null;
+ s.querySelector("#maze").addEventListener("touchstart",e=>{touchStart={x:e.touches[0].clientX,y:e.touches[0].clientY}},{passive:true});
+ s.querySelector("#maze").addEventListener("touchend",e=>{
+  if(!touchStart)return;let dx=e.changedTouches[0].clientX-touchStart.x,dy=e.changedTouches[0].clientY-touchStart.y;
+  if(Math.max(Math.abs(dx),Math.abs(dy))>25){if(Math.abs(dx)>Math.abs(dy))move(dx>0?1:-1,0);else move(0,dy>0?1:-1)}touchStart=null;
+ },{passive:true});
+}
+function drawMaze(s){
+ const maze=s.querySelector("#maze"),mini=s.querySelector("#mini");if(!maze||!mini)return;
+ maze.innerHTML="";mini.innerHTML="";
+ for(let y=0;y<11;y++)for(let x=0;x<11;x++){
+  const wall=mazeMap[y][x]==="#";let symbol="";
+  if(player.x===x&&player.y===y)symbol="🏃🏻";
+  else if(envelope.x===x&&envelope.y===y)symbol="✉️";
+  else{const it=mazeItems.find(i=>i.x===x&&i.y===y&&!save.items.includes(i.id));if(it)symbol=it.id}
+  const cell=document.createElement("div");cell.className="cell "+(wall?"wall":"floor");
+  if(symbol==="🏃🏻")cell.classList.add("player");if(symbol==="✉️")cell.classList.add("exit");if(symbol&&symbol!=="🏃🏻"&&symbol!=="✉️")cell.classList.add("item");
+  cell.textContent=symbol;maze.appendChild(cell);
+  const m=document.createElement("div");m.className="mini-cell "+(wall?"w":"");
+  if(player.x===x&&player.y===y)m.classList.add("p");if(envelope.x===x&&envelope.y===y)m.classList.add("e");mini.appendChild(m);
+ }
+ const status=s.querySelector("#mazeStatus");if(status)status.textContent="Secrets found: "+save.items.length+" / 3";
+}
+function revealEnvelope(s){
+ if(s.querySelector("#envelopeArea").dataset.opened)return;
+ s.querySelector("#envelopeArea").dataset.opened="yes";
+ award(7,300,200);successSound();
+ s.querySelector("#mazeStatus").textContent="DELIVERY FOUND!";
+ s.querySelector("#envelopeArea").innerHTML=`
+ <div class="challenge-box" style="text-align:center;margin-top:20px">
+ <div class="eyebrow">MISSION COMPLETE • SPECIAL DELIVERY</div>
+ <h2>YOU FOUND IT.</h2><p>You made it all the way. There's something inside for you.</p>
+ <div class="envelope" id="openEnvelope">✉️</div>
+ <button class="primary" id="openLetter">OPEN YOUR ENVELOPE</button></div>`;
+ s.querySelector("#openEnvelope").onclick=()=>openLetter();
+ s.querySelector("#openLetter").onclick=()=>openLetter();
+}
+function openLetter(){
+ document.getElementById("mainContent").classList.add("hidden");
+ document.getElementById("collectionScreen").classList.add("hidden");
+ document.getElementById("gameScreen").classList.remove("hidden");
+ clickSound();successSound();
+ const s=document.getElementById("gameScreen");
+ s.innerHTML=`<div class="screen-head"><span class="eyebrow">SPECIAL DELIVERY • FROM YOUR MISSION CONTROLLER</span><button class="secondary" onclick="goHome()">✕ EXIT</button></div>
+ <div class="letter">
+ <h2>HAPPY INTERNATIONAL MEN'S DAY!</h2>
+ <p><strong>Dear my 2 nmbr admiii,</strong></p>
+ <p>First of all, I hope you know how proud I am of you.</p>
+ <p>I see you trying. I see you showing up, learning new things, figuring things out and continuing even when things don't go exactly as planned.</p>
+ <p><strong>YOU ARE NOT FAILING. And you cannot call yourself a failure just because life is taking a little longer than you expected.</strong></p>
+ <p>You are learning. You are growing. You are building your own story. That counts.</p>
+ <p>I trust you. I genuinely believe in what you're capable of, even on the days when you struggle to believe in yourself.</p>
+ <p>Keep going. One step, one day, one little victory at a time. You will win one day, In Sha Allah. And when that day comes, I hope you remember all the days you almost gave up but chose to keep going.</p>
+ <p><strong>AND NOW, ONE VERY IMPORTANT ANNOUNCEMENT.</strong></p>
+ <p>I'm so proud of u abt what u r doing ....u r not failing and u cannot fail... i trust u!... just keep going u will win one day in sha Allah and aj k baad main na sunon k janab saab dusron sy khud ko compare kr ry k flana inna chnga kam kr rya ty main peechy reh gya just shut up before saying this!! u r the bestestestest everrrrr!! smj aiii ni to kut khaingy ab 😤😤 underestimate kra khud ko to ajeeb batmeez jay</p>
+ <p>Aapki journey aapki hai. Kisi aur ki speed aapki worth decide nahi karti. Aap kisi race mein late nahi hain. Apna time aane dein.</p>
+ <p>Aur ab dobara khud ko underestimate kiya na, toh ajeeb badtameez insaan hain aap.</p>
+ <p>You're allowed to make mistakes. You're allowed to take breaks. You're allowed to start again.</p>
+ <p>Just don't give up on yourself.</p>
+ <p><strong>YOU ARE THE BESTESTESTEST EVERrrrr!!</strong></p>
+ <p>I am so proud of you. Keep going, Player One. Your next level is waiting.</p>
+ <p class="sign">With lots of duas and a little bit of daant. ❤️</p>
+ </div>
+ <div class="action-row" style="justify-content:center"><button class="primary" onclick="showCollection()">VIEW YOUR SECRET COLLECTION</button><button class="secondary" onclick="goHome()">BACK TO CITY</button></div>`;
+}
+
+/* ---------- COLLECTION / REPLAY ---------- */
+function showCollection(){
+ stopCar();document.getElementById("mainContent").classList.add("hidden");
+ document.getElementById("gameScreen").classList.add("hidden");
+ const c=document.getElementById("collectionScreen");c.classList.remove("hidden");
+ c.innerHTML=`<div class="screen-head"><span class="eyebrow">YOUR VICE CITY MEMORIES</span><button class="secondary" onclick="goHome()">← BACK</button></div>
+ <h2>SECRET COLLECTION</h2><p class="small">Your discovered secrets and unlocked memories live here. Replay any mission whenever you want.</p>
+ <div class="collection">
+ ${mazeItems.map(it=>`<div class="collect"><div style="font-size:30px">${save.items.includes(it.id)?it.id:"🔒"}</div><b>${save.items.includes(it.id)?it.name:"Hidden secret"}</b><p class="small">${save.items.includes(it.id)?"Collected!":"Find this in the maze."}</p></div>`).join("")}
+ <button class="collect" onclick="openLetter()"><div style="font-size:30px">💌</div><b>International Men's Day Letter</b><p class="small">${save.done.includes(7)?"Tap to read your letter again":"Complete the final maze to unlock."}</p></button>
+ </div>
+ <h3 class="section-title">REPLAY MISSIONS</h3><div class="missions" id="replayGrid"></div>`;
+ missions.forEach((m,i)=>{
+  const b=document.createElement("button");b.className="mission";b.innerHTML=`<div class="num">MISSION ${m[0]}</div><h3>${m[1]}</h3><p>Replay mission ↻</p>`;
+  b.onclick=()=>openMission(i);c.querySelector("#replayGrid").appendChild(b);
+ });
+ c.scrollIntoView({behavior:"smooth"});
+}
+updateHUD();
+</script>
+</body>
+</html>
